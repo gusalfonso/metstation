@@ -24,7 +24,7 @@ export const addDHTData = async (
         $1, $2, $3, $4, 
       )`,
       [
-        DHTData.id,
+        DHTData.id || Math.random().toString(36).substr(2, 9),
         DHTData.temperature,
         DHTData.humidity,
         DHTData.last_updated || new Date(),
