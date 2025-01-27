@@ -3,8 +3,8 @@
 interface TableProps {
   temp: number;
   hum: number;
-  temphora: string;
-  humhora: string;
+  temphora?: string | Date;
+  humhora?: string | Date;
 }
 
 export default function TableDHT(props: TableProps) {
@@ -24,8 +24,8 @@ export default function TableDHT(props: TableProps) {
           <td className="text-center p-4">{hum}</td>
         </tr>
         <tr className="bg-slate-200">
-          <td className="text-center p-4">{temphora}</td>
-          <td className="text-center p-4">{humhora}</td>
+          <td className="text-center p-4">{temphora ? temphora.toString() : ""}</td>
+          <td className="text-center p-4">{humhora ? humhora.toString() : ""}</td>
         </tr>
       </tbody>
     </table>

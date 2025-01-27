@@ -3,7 +3,7 @@ import { DHTData } from "../../declarations";
 
 export const getDHTData = async (): Promise<DHTData[]> => {
   const data = await dbClient.query(
-    `SELECT * FROM dht_data ORDER BY last_updated`
+    `SELECT * FROM dht_data ORDER BY last_updated DESC`
   );
   return data.rows.map ((row) => ({
     id: row.id,
