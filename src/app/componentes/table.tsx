@@ -1,32 +1,32 @@
 "use client";
 
 interface TableProps {
-  temp: number;
-  hum: number;
-  temphora?: string | Date;
-  humhora?: string | Date;
+  data: {
+    variable: string;
+    value: number;
+    last_updated: string | Date | undefined;
+  }[];
 }
 
 export default function TableDHT(props: TableProps) {
-  const { temp, hum, temphora, humhora } = props;
-
+  const data = props.data;
   return (
     <table className="table-auto">
       <thead>
         <tr className="bg-slate-200">
-          <th className="text-center p-4">Temperatura</th>
-          <th className="text-center p-4">Humedad</th>
+          <th className="text-center p-4">Variable</th>
+          <th className="text-center p-4">Valor</th>
+          <th className="text-center p-4">Ultima actualización</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="text-center p-4">{temp}</td>
-          <td className="text-center p-4">{hum}</td>
-        </tr>
-        <tr className="bg-slate-200">
-          <td className="text-center p-4">{temphora ? temphora.toString() : ""}</td>
-          <td className="text-center p-4">{humhora ? humhora.toString() : ""}</td>
-        </tr>
+        {data.map((item) => (
+          <tr key={item.variable}>
+            <td className="text-center p-4">{item.variable}</td>
+            <td className="text-center p-4">{item.value}</td>
+            <td className="text-center p-4">{item.last_updated ? item.last_updated.toLocaleString() : ""}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

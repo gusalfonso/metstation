@@ -22,9 +22,9 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // const tiempo = data.length > 0 ? data[0].last_updated : "";
-
+  
+  
+  
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -32,36 +32,26 @@ export default function Home() {
       </div>
     );
   }
+  
+  const dataInsert = data.length > 0 ? [
+    {
+      variable: "Temperatura ( °C)",
+      value: data[0].temperature || 0,
+      last_updated: data[0].last_updated || "",
+    },
+    {
+      variable: "Humedad ( %HR)",
+      value: data[0].humidity || 0,
+      last_updated: data[0].last_updated || "",
+    }
+  ] : [];
 
-
-  // const tiempo = data.length > 0 && data[0].last_updated instanceof Date
-  //   ? data[0].last_updated.toISOString()
-  //   : "";
 
   return (
     <>
       <main className="arduino flex items-center justify-center min-h-screen py-2">
-        <TableDHT temp={data[0].temperature} hum={data[0].humidity} temphora={data[0].last_updated} humhora={data[0].last_updated} />
+        <TableDHT data={dataInsert} />
       </main>
     </>
   );
 }
-
-// import { useState, useEffect } from "react";
-
-// export default function Home() {
-//   const [isClient, setIsClient] = useState(false);
-
-//   useEffect(() => {
-//     setIsClient(true);
-//   }, []);
-//   return (
-//     <>
-//       {isClient && (
-//         <div className="flex items-center justify-center min-h-screen">
-//           Hola mundo
-//         </div>
-//       )}
-//     </>
-//   );
-// }
