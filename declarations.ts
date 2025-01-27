@@ -1,6 +1,6 @@
 export interface DHTData {
-    id: string;
+    id?: string;
     temperature: number;
     humidity: number;
-    last_updated: string | Date;
+    last_updated?: string | Date;
 }
