@@ -18,10 +18,10 @@ export const addDHTData = async (
   ): Promise<void> => {
     await dbClient.query(
       `INSERT INTO dht_data (
-        id, temperature, humidity, last_updated,
+        id, temperature, humidity, last_updated
       ) 
       VALUES (
-        $1, $2, $3, $4, 
+        $1, $2, $3, $4
       )`,
       [
         DHTData.id || Math.random().toString(36).substr(2, 9),
